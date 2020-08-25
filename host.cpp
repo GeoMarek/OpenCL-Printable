@@ -1,12 +1,16 @@
-#include "Computer.h"
+#define __MAX_DEFAULT_VECTOR_SIZE 128
+#include "PlatformPrintable.h"
 
-
-int main()
+int main() 
 {
-    
-    PrintableComputer* myComp = new PrintableComputer();
-    myComp->Print();
-    delete myComp;
-    std::cin.get();
+    std::vector<cl::Platform> platforms;
+    cl::Platform::get(&platforms);
+    for (auto p : platforms)
+    {
+        PrintablePlatform prt_platform(p);
+        prt_platform.Print();
+    }
+    getchar();
     return 0;
+
 }
